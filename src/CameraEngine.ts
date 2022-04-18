@@ -1,7 +1,5 @@
-import {Matrix4, ProjMatrix} from "./structs/Matrix";
 import type {mesh, tris} from "./structs/Structs";
-import type {vec3} from "./structs/Vectors";
-import {emptyTris} from "./structs/Structs";
+import type {glMatrix, mat4, vec3} from "gl-matrix";
 
 export type Ctx = CanvasRenderingContext2D
 export class CameraEngine {
@@ -62,14 +60,27 @@ class CameraInfo {
         this.height = height;
     }
 
-    public createProjectionMatrix(): ProjMatrix {
+    public createProjectionMatrix(): mat4 {
         const scaleFactor = 1/Math.tan(this.fov/2);
-        return new ProjMatrix([
-            [(this.height/this.width) * scaleFactor, 0, 0 ,0],
-            [0, scaleFactor, 0, 0],
-            [0, 0, this.zFar / (this.zFar - this.zNear), 1],
-            [0, 0, (-this.zFar - this.zNear) / (this.zFar - this.zNear), 0]
-        ], this.width)
+        return [
+            (this.height/this.width) * scaleFactor, 0, 0 ,0,
+            0, scaleFactor, 0, 0,
+            0, 0, this.zFar / (this.zFar - this.zNear), 1,
+            0, 0, (-this.zFar - this.zNear) / (this.zFar - this.zNear), 0
+        ]
+    }
+
+}
+
+export class CameraPos {
+    pos: vec3;
+    xRot: number;
+    yRot: number;
+    zRot: number;
+
+    public translateX(x: number) {
+        let newVec: vec3 = [0,0,0]
+        newVec
     }
 
 }

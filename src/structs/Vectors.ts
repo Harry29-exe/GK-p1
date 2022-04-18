@@ -1,4 +1,5 @@
-export type vec3 = [number, number, number];
+import type {vec3} from "gl-matrix"
+
 export const emptyVec3 = (): vec3 => [0,0,0]
 
 export class Vec3 {
