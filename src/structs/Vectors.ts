@@ -54,6 +54,49 @@ export class Vec3d {
         return nv;
     }
 
+    //experimental
+    public rotateX(origin: Vec3d, rad: number): Vec3d {
+        const temp1 = Vec3d.empty();
+        const temp2 = Vec3d.empty();
+        temp1.x = this.x - origin.x;
+        temp1.y = this.y - origin.y;
+        temp1.z = this.z - origin.z;
+
+        temp2.x = temp1.x;
+        temp2.y = temp1.y * Math.cos(rad) - temp1.z * Math.sin(rad)
+        temp2.z = temp1.y * Math.sin(rad) + temp1.z * Math.cos(rad)
+
+        return Vec3d.from(temp2.x + origin.x, temp2.y + origin.y, temp2.z + origin.z);
+    }
+
+    public rotateY(origin: Vec3d, rad: number): Vec3d {
+        const temp1 = Vec3d.empty();
+        const temp2 = Vec3d.empty();
+        temp1.x = this.x - origin.x;
+        temp1.y = this.y - origin.y;
+        temp1.z = this.z - origin.z;
+
+        temp2.x = temp1.z * Math.sin(rad) + temp1.x * Math.cos(rad);
+        temp2.y = temp1.y;
+        temp2.z = temp1.z * Math.cos(rad) - temp1.x + Math.sin(rad);
+
+        return Vec3d.from(temp2.x + origin.x, temp2.y + origin.y, temp2.z + origin.z);
+    }
+
+    public rotateZ(origin: Vec3d, rad: number): Vec3d {
+        const temp1 = Vec3d.empty();
+        const temp2 = Vec3d.empty();
+        temp1.x = this.x - origin.x;
+        temp1.y = this.y - origin.y;
+        temp1.z = this.z - origin.z;
+
+        temp2.x = temp1.x * Math.cos(rad) - temp1.y * Math.sin(rad);
+        temp2.y = temp1.x * Math.sin(rad) + temp1.y * Math.cos(rad)
+        temp2.z = temp1.z
+
+        return Vec3d.from(temp2.x + origin.x, temp2.y + origin.y, temp2.z + origin.z);
+    }
+
     public get x(): number {
         return this.d[0]
     }

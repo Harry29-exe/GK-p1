@@ -10,7 +10,7 @@
 
     let camera = new CameraEngine(width, height);
     let cube = defaultCube()
-    cube = cube.translateZ(1).translateX(-0.5).translateY(-0.2)
+    cube = cube.translateZ(2).translateX(0).translateY(0)
 
     onMount(() => {
         canvas.width = 300;
